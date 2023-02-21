@@ -1,0 +1,53 @@
+<h1>Bill For @ViewBag.AcademicYear Academic Year</h1>
+<hr style="width:30%">
+<dl class="row">
+<dt class="col-sm-5">
+    Student Number:
+</dt>
+<dd class="col-sm-7">
+    @ViewBag.StudentNumber
+</dd>
+<dt class="col-sm-5">
+    Student Name:
+</dt>
+<dd class="col-sm-7">
+    @ViewBag.StudentName
+</dd>
+<dt class="col-sm-5">
+    Programme:
+</dt>
+<dd class="col-sm-7">
+    @ViewBag.Programme
+</dd>
+<dt class="col-sm-5">
+    Bill For @ViewBag.AcademicYear Academic Year:
+</dt>
+<dd class="col-sm-7">
+    @ViewBag.BillAmount
+</dd>
+<dt class="col-sm-5">
+    Amount Paid:
+</dt>
+<dd class="col-sm-7">
+    @ViewBag.AmountPaid
+</dd>
+<dt class="col-sm-5">
+    Balance:
+</dt>
+<dd class="col-sm-7">
+    @ViewBag.Balance
+</dd>
+<dt class="col-sm-5">
+    Amount Owed:
+</dt>
+<dd class="col-sm-7">
+    @ViewBag.AmountOwed
+</dd>
+</dl>
+
+<div>
+    <a asp-controller="Payments" asp-action="Index" asp-route-id="@ViewBag.Id">Transactions</a>
+</div>
+<div>
+    <a asp-action="Index">Back To List</a>
+</div>

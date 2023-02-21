@@ -1,0 +1,90 @@
+@model sms.Models.ViewModels.CourseScores
+
+@{
+    string instructorId = "instructorId";
+    string courseId = "courseId";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Instructors</h3>
+        <h4>Select Instructor, whose Courses you want to work on</h4>
+        <form asp-action="CourseScores" method="get">
+        <div>
+        Choose Specific Instructor: <select asp-for="@instructorId" class="form-control" asp-items="@ViewBag.InstructorList">
+        <option value="">-- Select Instructor --</option>
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+        </div>
+        </form>
+    </div>
+    
+   @if (Model.Courses != null)
+   {
+     <div class="col-sm-6">
+        <h3>Lecturer's Courses</h3>
+        <h4>Select Course for which's Scores you want to record</h4>
+        <form asp-action="CourseScores" method="get">
+        <div>
+            <input type="hidden" name="instructorId" value="@ViewBag.InstructorId">
+        Choose A Course: <select asp-for="@courseId" class="form-control" asp-items="@ViewBag.CourseList">
+        <option value="">-- Select Course --</option>
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+        </div>
+        </form>
+    </div>
+   }
+
+</div>
+
+@if (Model.Students != null)
+{
+    <div>
+        <hr>
+        <h4>Students enrolled in @ViewBag.Course</h4>
+        <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Student Number
+            </th>
+            <th>
+                Student Name
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Students)
+            {
+                <tr>
+                    <td>
+                        @item.StudentNumber
+                    </td>
+                    <td>
+                        @item.FullName
+                    </td>
+                    <td>
+                        @{  
+                            var courseRegistrationId = item.CourseRegistration.Single(c => c.CourseId == @ViewBag.CourseId).Id;
+                        }
+
+                       @if (item.CourseRegistration.Single(c => c.CourseId == @ViewBag.CourseId).Score1 != null || item.CourseRegistration.Single(c => c.CourseId == @ViewBag.CourseId).Score2 != null)
+                       {
+                        <span>
+                            Score1: @item.CourseRegistration.Single(c => c.CourseId == @ViewBag.CourseId).Score1 | Score2: @item.CourseRegistration.Single(c => c.CourseId == @ViewBag.CourseId).Score2 | TotalScore: @item.CourseRegistration.Single(c => c.CourseId == @ViewBag.CourseId).TotalScore | <a asp-action="EditScore" asp-route-id="@courseRegistrationId" asp-route-instructorId="@ViewBag.InstructorId" asp-route-courseId="@ViewBag.CourseId">Edit Scores</a> 
+                        </span>
+                       }
+                       else
+                       {
+                        <a asp-action="EditScore" asp-route-id="@courseRegistrationId" asp-route-instructorId="@ViewBag.InstructorId" asp-route-courseId="@ViewBag.CourseId">Edit Scores</a>
+                       }
+                    </td>
+                </tr>
+            }
+        </tbody>
+        </table>
+    </div>
+}

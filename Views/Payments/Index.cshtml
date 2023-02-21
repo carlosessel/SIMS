@@ -1,0 +1,111 @@
+@model IEnumerable<sms.Models.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if(@ViewBag.Id == null)
+{
+    <h1>Index</h1>
+}
+
+
+
+
+@if(@ViewBag.Id != null)
+{
+<h6>Student Number: @ViewBag.StudentNumber</h6>
+<h6>Student Name: @ViewBag.StudentName</h6>
+<h6>Programme: @ViewBag.Programme</h6>
+<hr style="width:30%">
+}
+
+@if(@ViewBag.Id != null)
+{
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.Id">Create New</a>
+</p>
+}
+else
+{
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+}
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            @if (@ViewBag.Id == null)
+            {
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th> 
+            }
+            
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            @if(@ViewBag.Id == null)
+            {
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FullName)
+            </td>
+            }
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+
+            <td>
+                @if (@ViewBag.Id != null)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-studentId="@ViewBag.Id">Edit</a> <span>|</span>
+                }
+                else
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <span>|</span>
+                }
+                
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                
+                @if (@ViewBag.Id != null)
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-studentId="@ViewBag.Id">Delete</a>
+                }
+                else
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+
+@if(@ViewBag.Id != null)
+{
+<div>
+    <a asp-controller="Student" asp-action="Bill" asp-route-id="@ViewBag.Id">Back</a>
+</div>
+}

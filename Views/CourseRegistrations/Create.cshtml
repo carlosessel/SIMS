@@ -1,0 +1,68 @@
+@model sms.Models.CourseRegistration
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CourseRegistration</h4>
+<hr />
+
+<h6>
+    Student Number: @ViewBag.StudentNumber
+</h6>
+<h6>
+    Student Name: @ViewBag.StudentName
+</h6>
+<h6>
+    Programme: @ViewBag.Programme
+</h6>
+<hr style="width:30%">
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name = "StudentId" value="@ViewBag.SpecificStudentId">
+            @* <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <select asp-for="StudentId" class ="form-control" asp-items="ViewBag.StudentId"> </select>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="CourseId" class="control-label"></label>
+                <select asp-for="CourseId" class ="form-control" asp-items="ViewBag.CourseId">
+                    <option value="">-- Select Course --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcadYearId" class="control-label"></label>
+                <select asp-for="AcadYearId" class ="form-control" asp-items="ViewBag.AcadYearId">
+                    <option value="">-- Select Academic Year --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SemesterId" class="control-label"></label>
+                <select asp-for="SemesterId" class ="form-control" asp-items="ViewBag.SemesterId">
+                    <option value="">-- Select Semester --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearLevelId" class="control-label"></label>
+                <select asp-for="YearLevelId" class ="form-control" asp-items="ViewBag.YearLevelId">
+                    <option value="">-- Select Year Level --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id ="@ViewBag.Id">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

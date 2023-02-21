@@ -1,0 +1,72 @@
+@model IEnumerable<sms.Models.CourseAssignment>
+
+@{
+    ViewData["Title"] = "Index";
+    string filter = "filter";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Index" method="get">
+<div class="col-md-4">
+        Filter By Academic Year: <select asp-for="@filter" class="form-control" asp-items="@ViewBag.Filter">
+        <option value="">-- Select Academic Year --</option>
+    </select>
+    <br>
+    <input type="submit" value="Filter"> | <a asp-route-id = "@ViewBag.Id" asp-action="Index">Back to Full List</a>
+</div>
+</form>
+<hr style="width:30%">
+
+<h6>
+    Instructor Name: @ViewBag.InstructorName
+</h6>
+<h6>
+    Department: @ViewBag.InstructorDepartment
+</h6>
+<hr style="width:30%">
+
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.Id">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcadYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcadYear.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semester.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Instructors" asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div>
+    <ul>
+
+        
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Departments" asp-action="Index">Departments</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="ProgStreams" asp-action="Index">Programmes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Streams" asp-action="Index">Streams</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="GradingSystems" asp-action="Index">Grading System</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="AcadYears" asp-action="Index">Academic Year</a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="CourseRegistrations" asp-action="CourseScores">Set Course Scores</a>
+        </li>
+       
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="PaymentTypes" asp-action="Index">Payment Types</a>
+        </li>
+        
+        
+        
+    </ul>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>

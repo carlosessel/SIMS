@@ -1,0 +1,62 @@
+@model sms.Models.CourseAssignment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CourseAssignment</h4>
+<hr />
+
+<h6>
+    Instructor Name: @ViewBag.InstructorName
+</h6>
+<h6>
+    Department: @ViewBag.InstructorDepartment
+</h6>
+<hr style="width:30%">
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="InstructorId" value="@ViewBag.SpecificInstructorId">
+            @* <div class="form-group">
+                <label asp-for="InstructorId" class="control-label"></label>
+                <select asp-for="InstructorId" class ="form-control" asp-items="ViewBag.InstructorId">
+                    <option value="">-- Select Instructor --</option>
+                </select>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="CourseId" class="control-label"></label>
+                <select asp-for="CourseId" class ="form-control" asp-items="ViewBag.CourseId">
+                    <option value="">-- Select Course --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcadYearId" class="control-label"></label>
+                <select asp-for="AcadYearId" class ="form-control" asp-items="ViewBag.AcadYearId">
+                    <option value="">-- Select Academic Year --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SemesterId" class="control-label"></label>
+                <select asp-for="SemesterId" class ="form-control" asp-items="ViewBag.SemesterId">
+                    <option value="">-- Select Semester --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@ViewBag.Id">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,102 @@
+@model sms.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <div class="row">
+    <div class="col-sm-6">
+    <div>
+        <dl class="row">
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.StudentNumber)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.StudentNumber)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.ProgStream)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.ProgStream.ProgStreamName)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+        
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.Gender.GenderType)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.MaritalStatus.Name)
+        </dd>
+        </dl>
+    </div>
+    </div>
+    <div class="col-sm-6">
+        <div>
+            <a asp-controller="CourseRegistrations" asp-action="Index" asp-route-id="@ViewBag.Id">Course Registration</a> |
+        </div>
+        <div>
+            <a asp-controller="Student" asp-action="Bill" asp-route-id="@ViewBag.Id">Bill</a> |
+        </div>
+        <div>
+            <a asp-controller="Payments" asp-action="Index" asp-route-id="@ViewBag.Id">Payments</a>
+        </div>
+    </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
